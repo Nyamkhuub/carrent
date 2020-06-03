@@ -1,0 +1,5 @@
+server:
+  port: 8085
+security:
+  properties:
+    public-key: classpath:public.txt

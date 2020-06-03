@@ -1,0 +1,19 @@
+server:
+  port: 8082
+security:
+  jwt:
+    key-store: classpath:keystore.jks
+    key-store-password: Nyamkhuu1!
+    key-pair-alias: servercert
+    key-pair-password: Nyamkhuu1!
+
+spring:
+  datasource:
+    password: root
+    platform: postgres
+    url: jdbc:postgresql://localhost:5431/carrent
+    username: postgres
+  jpa:
+    database: POSTGRESQL
+    generate-ddl: true
+    show-sql: true

@@ -3,3 +3,14 @@ server:
 security:
   properties:
     public-key: classpath:public.txt
+
+spring:
+  datasource:
+    password: root
+    platform: postgres
+    url: jdbc:postgresql://localhost:5431/carrent
+    username: postgres
+  jpa:
+    database: POSTGRESQL
+    generate-ddl: true
+    show-sql: true

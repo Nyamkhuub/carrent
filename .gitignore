@@ -1,0 +1,11 @@
+car-rent-platform.iml
+**/target/
+*.class
+*.jar
+*.war
+*.ear
+*.logs
+*.iml
+**/.idea/
+**/.DS_Store
+

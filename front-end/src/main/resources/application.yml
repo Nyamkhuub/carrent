@@ -1,0 +1,15 @@
+logging:
+  level:
+    org:
+      atmosphere: warn
+server:
+  port: 8080
+vaadin:
+  compatibilityMode: false
+
+app:
+  logo: https://hackernoon.com/hn-images/1*PW6lORfJV-kEJ8T8Z5OjIQ.png
+  alt: Open source Logo
+  height: 44px
+  icon: 32px
+  appName: Car rent platform

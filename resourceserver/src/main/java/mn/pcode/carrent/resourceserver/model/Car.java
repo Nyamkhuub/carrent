@@ -1,5 +1,8 @@
 package mn.pcode.carrent.resourceserver.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +13,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "cars")
+@Getter @Setter
 public class Car implements Serializable {
    @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,92 +38,4 @@ public class Car implements Serializable {
    private int carRange;
    @Column(name = "capfuel", nullable = false)
    private int capFuel;
-
-   public String getCarid() {
-      return carid;
-   }
-
-   public void setCarid(String carid) {
-      this.carid = carid;
-   }
-
-   public String getCarName() {
-      return carName;
-   }
-
-   public void setCarName(String carName) {
-      this.carName = carName;
-   }
-
-   public char getTransmission() {
-      return transmission;
-   }
-
-   public void setTransmission(char transmission) {
-      this.transmission = transmission;
-   }
-
-   public int getDoors() {
-      return doors;
-   }
-
-   public void setDoors(int doors) {
-      this.doors = doors;
-   }
-
-   public int getCarYear() {
-      return carYear;
-   }
-
-   public void setCarYear(int carYear) {
-      this.carYear = carYear;
-   }
-
-   public int getSeat() {
-      return seat;
-   }
-
-   public void setSeat(int seat) {
-      this.seat = seat;
-   }
-
-   public int getLuggage() {
-      return luggage;
-   }
-
-   public void setLuggage(int luggage) {
-      this.luggage = luggage;
-   }
-
-   public int getPrice() {
-      return price;
-   }
-
-   public void setPrice(int price) {
-      this.price = price;
-   }
-
-   public String getImage() {
-      return image;
-   }
-
-   public void setImage(String image) {
-      this.image = image;
-   }
-
-   public int getCarRange() {
-      return carRange;
-   }
-
-   public void setCarRange(int carRange) {
-      this.carRange = carRange;
-   }
-
-   public int getCapFuel() {
-      return capFuel;
-   }
-
-   public void setCapFuel(int capFuel) {
-      this.capFuel = capFuel;
-   }
 }

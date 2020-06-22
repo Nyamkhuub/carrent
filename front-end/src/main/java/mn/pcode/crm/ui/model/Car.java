@@ -1,4 +1,4 @@
-package mn.pcode.crm.ui.view;
+package mn.pcode.crm.ui.model;
 
 import lombok.Getter;
 import lombok.Setter;

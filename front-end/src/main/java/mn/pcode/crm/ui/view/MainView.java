@@ -11,6 +11,7 @@ import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.login.LoginForm;
 import com.vaadin.flow.component.login.LoginI18n;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.page.Viewport;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
@@ -18,6 +19,8 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.PWA;
 import mn.pcode.crm.ui.config.MainProperties;
 import mn.pcode.crm.ui.controller.MainController;
+import mn.pcode.crm.ui.service.CarInfoService;
+import mn.pcode.crm.ui.widget.CarUI;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -41,18 +44,26 @@ enum TabName {
         enableInstallPrompt = false)
 @EnableConfigurationProperties(MainProperties.class)
 public class MainView extends AppLayout {
+
     @Autowired
     private MainController controller;
+
+    @Autowired
+    private CarInfoService carInfoService;
 
     private final LoginForm loginForm;
     private final MainProperties properties;
     private final Tabs mainTabs;
     private final Image logo;
+    private final HorizontalLayout mainCarList;
+
+    private boolean isInitialized = false;
 
     public MainView(final MainProperties mainProperties) {
         this.properties = mainProperties;
         this.loginForm = new LoginForm();
         this.logo = new Image(properties.getLogo(), properties.getAlt());
+        mainCarList = new HorizontalLayout();
         this.mainTabs = new Tabs(
                 new Tab(StringUtils.capitalize(TabName.HOME.toString().toLowerCase())),
                 new Tab(StringUtils.capitalize(TabName.ABOUT.toString().toLowerCase())),
@@ -88,7 +99,7 @@ public class MainView extends AppLayout {
             String selectedMenu = event.getSelectedTab().getLabel().toUpperCase();
             switch (TabName.valueOf(selectedMenu)) {
                case HOME:
-                   setContent(new Text("Home section"));
+                   showListOfCar();
                    break;
                 case ABOUT:
                     setContent(new Text("About section"));
@@ -107,6 +118,18 @@ public class MainView extends AppLayout {
             mainTabs.setSelectedIndex(0);
             loginWindow.close();
         });
+    }
+
+    private void showListOfCar() {
+        if (this.isInitialized) {
+            setContent(mainCarList);
+        } else {
+            carInfoService.getCarInfoList().stream().forEach(car -> {
+                mainCarList.add(new CarUI(car));
+            });
+            this.isInitialized = true;
+            setContent(mainCarList);
+        }
     }
 
     private LoginI18n loginInfo() {
